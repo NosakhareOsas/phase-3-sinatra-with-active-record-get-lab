@@ -17,7 +17,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/baked_goods/most_expensive' do
-    baked_goods = BakedGood.sort_price_desc.first
+    baked_goods = BakedGood.sort_price_desc.limit(1)[0] 
+    #baked_goods = BakedGood.sort_price_desc.first 
+    #limit returns array, first returns item, last returns minimum value(cheapest item) 
     baked_goods.to_json
   end
 
